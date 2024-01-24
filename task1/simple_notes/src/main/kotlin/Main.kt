@@ -1,5 +1,7 @@
 package org.example
 
+import org.example.Controller.AppController
+
 fun main() {
-    println("Hello World!")
+    AppController().start()
 }
