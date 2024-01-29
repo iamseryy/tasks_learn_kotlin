@@ -2,8 +2,9 @@ package org.example.command
 
 import org.example.exception.ExitException
 
-class ExitCommand: Command<Unit, Unit> {
-    override fun execute(t: Unit?) {
-        throw ExitException("The application is closed")
+class ExitCommand: Command {
+    companion object {
+        const val EXIT_MESSAGE = "Argument error"
     }
+    override fun execute(data: String?) = throw ExitException(EXIT_MESSAGE)
 }

@@ -2,6 +2,9 @@ package org.example.command
 
 import org.example.view.Console
 
-class HelpCommand: Command<Unit, Unit> {
-    override fun execute(t: Unit?) = Console().output("HELP HELP HELP")
+class HelpCommand: Command {
+    companion object {
+        const val HELP_CONTENT = "HELP HELP HELP"
+    }
+    override fun execute(data: String?) = Console().output(HELP_CONTENT)
 }

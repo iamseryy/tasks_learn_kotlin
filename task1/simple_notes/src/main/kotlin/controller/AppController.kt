@@ -1,23 +1,20 @@
 package org.example.Controller
 
-import org.example.command.*
 import org.example.exception.ArgumentErrorException
 import org.example.exception.CommandErrorException
 import org.example.exception.ExitException
-import org.example.parser.Parser
-import org.example.parser.ParserImpl
+import org.example.parser.CommandParser
+import org.example.parser.CommandParserImpl
 import org.example.view.Console
 import org.example.view.UserInterface
 
 class AppController {
     fun start() {
         val console: UserInterface = Console()
-        val user = User(AddCommand(), HelpCommand(), ExitCommand())
-        val parser: Parser = ParserImpl()
+        val commandParser: CommandParser = CommandParserImpl()
         while (true) {
             try {
-                val commandExecute = parser.parse(console.input())
-                commandExecute()
+                commandParser.parse(console.input()).run { first.execute(second) }
             } catch (e: ExitException) {
                 println(e.message)
                 break
