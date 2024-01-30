@@ -3,6 +3,7 @@ package org.example.Controller
 import org.example.exception.ArgumentErrorException
 import org.example.exception.CommandErrorException
 import org.example.exception.ExitException
+import org.example.exception.FieldValidateErrorException
 import org.example.parser.CommandParser
 import org.example.parser.CommandParserImpl
 import org.example.view.Console
@@ -24,7 +25,11 @@ class AppController {
             } catch (e: CommandErrorException) {
                 println(e.message)
                 continue
+            } catch (e: FieldValidateErrorException) {
+                println(e.message)
+                continue
             }
+
         }
     }
 }

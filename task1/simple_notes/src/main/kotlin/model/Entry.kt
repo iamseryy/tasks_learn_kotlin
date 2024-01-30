@@ -1,11 +1,7 @@
 package org.example.model
 
-data class Entry(val name: String, val phoneNumber: String, val email: String): Validatable {
-    override fun isValid(): Boolean {
-        return this.phoneNumber.matches(Regex("""[0-9]+"""))
-    }
-
-    class EntryBuilder {
+data class Entry(val name: String, val phoneNumber: String, val email: String) {
+   class EntryBuilder {
         private var name: String = ""
         private var phoneNumber: String = ""
         private var email: String = ""
