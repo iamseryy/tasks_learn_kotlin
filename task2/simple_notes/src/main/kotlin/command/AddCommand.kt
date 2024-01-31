@@ -3,10 +3,14 @@ package org.example.command
 import org.example.exception.ArgumentErrorException
 import org.example.exception.EmailValidateErrorException
 import org.example.exception.PhoneNumberValidateErrorException
-import org.example.model.Entry
+import org.example.model.Person
 import org.example.view.Console
 
 class AddCommand: Command {
+    override fun isValid(args: String?): Boolean {
+        TODO("Not yet implemented")
+    }
+
     companion object {
         const val ARGUMENT_ERROR = "Argument error"
         const val PHONE_NUMBER_ERROR = "Phone number error"
@@ -21,16 +25,14 @@ class AddCommand: Command {
 
         val fields = Parser().parse(data)
 
-        val entry = Entry.EntryBuilder()
+        val person = Person.EntryBuilder()
             .name(fields["name"] ?: throw ArgumentErrorException(ARGUMENT_ERROR))
             .phoneNumber(fields["phone"] ?: "")
             .email(fields["email"] ?: "")
             .build()
 
-        Command.contacts.add(entry)
-        Console().output("Name: ${entry.name}" +
-                "${if(!entry.phoneNumber.isNullOrEmpty()) "; phone number: " + entry.phoneNumber else ""}" +
-                "${if(!entry.email.isNullOrEmpty()) "; email: " + entry.email else ""}")
+        Command.contacts.add(person)
+        Console().output(person.toString())
     }
 
     private class Parser {

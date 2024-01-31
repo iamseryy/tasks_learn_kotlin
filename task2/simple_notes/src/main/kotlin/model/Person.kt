@@ -1,6 +1,6 @@
 package org.example.model
 
-data class Entry(val name: String, val phoneNumber: String, val email: String) {
+data class Person(val name: String, val phoneNumber: String, val email: String) {
    class EntryBuilder {
         private var name: String = ""
         private var phoneNumber: String = ""
@@ -21,6 +21,6 @@ data class Entry(val name: String, val phoneNumber: String, val email: String) {
             return this
         }
 
-        fun build() = Entry(name = name, phoneNumber = phoneNumber, email = email)
+        fun build() = Person(name = name, phoneNumber = phoneNumber, email = email)
     }
 }
