@@ -3,7 +3,7 @@ package org.example.command
 import org.example.view.Console
 
 class HelpCommand: Command {
-    override fun isValid(args: String?) = !args.isNullOrEmpty()
+    override fun isValid(args: String?) = args.isNullOrEmpty()
 
     companion object {
         const val HELP_ALL = "help content for everything"
