@@ -1,10 +1,10 @@
 package org.example.model
 
-data class Person(val name: String, val phoneNumber: String, val email: String) {
+data class Person(val name: String, val phoneNumber: HashSet<String>, val email: HashSet<String>) {
    class EntryBuilder {
-        private var name: String = ""
-        private var phoneNumber: String = ""
-        private var email: String = ""
+        private lateinit var name: String
+        private lateinit var phoneNumber: HashSet<String>
+        private lateinit var email: HashSet<String>
 
         fun name(name: String): EntryBuilder {
             this.name = name
@@ -12,12 +12,12 @@ data class Person(val name: String, val phoneNumber: String, val email: String) 
         }
 
         fun phoneNumber(phoneNumber: String): EntryBuilder {
-            this.phoneNumber = phoneNumber
+            this.phoneNumber.add(phoneNumber)
             return this
         }
 
         fun email(email: String): EntryBuilder {
-            this.email = email
+            this.email.add(email)
             return this
         }
 
