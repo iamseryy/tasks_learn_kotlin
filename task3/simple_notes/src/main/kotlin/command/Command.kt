@@ -14,6 +14,8 @@ sealed interface Command {
             "find" to FindCommand(),
             "help" to HelpCommand(),
             "exit" to ExitCommand())
+
+        const val ARGUMENT_ERROR = "Argument error"
     }
 
     fun execute(data: String? = null)
