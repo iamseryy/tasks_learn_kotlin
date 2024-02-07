@@ -16,16 +16,20 @@ class AddCommand: Command {
 
         if(args.isEmpty()) parser.parse(data)
 
-        with(
-            Person.EntryBuilder()
-                .name(args["name"] ?: throw ArgumentErrorException(Command.ARGUMENT_ERROR))
-                .phoneNumber(args["phone"] ?: "")
-                .email(args["email"] ?: "")
-                .build()
-        ) {
-            if(Command.contacts.isPersonExists(this)) Command.contacts.update(this) else Command.contacts.add(this)
-            Console().output(Command.contacts.findPersonByName(this.name).toString())
-        }
+//        with(
+//            Person.EntryBuilder()
+//                .name(args["name"] ?: throw ArgumentErrorException(Command.ARGUMENT_ERROR))
+//                .phoneNumber(args["phone"] ?: "")
+//                .email(args["email"] ?: "")
+//                .build()
+//        ) {
+//            if(Command.contacts.isPersonExists(this)) Command.contacts.update(this) else Command.contacts.add(this)
+//            Console().output(Command.contacts.findPersonByName(this.name).toString())
+//        }
+
+        Command.contacts.add(args["name"] ?: ""){Person.EntryBuilder().email(args["email"]!!)}
+
+
     }
 
     override fun isValid(data: String?): Boolean {

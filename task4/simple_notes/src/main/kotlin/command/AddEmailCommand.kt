@@ -11,15 +11,15 @@ class AddEmailCommand: Command {
     override fun execute(data: String?) {
         if(data.isNullOrEmpty() || data.trim().isEmpty()) throw ArgumentErrorException(Command.ARGUMENT_ERROR)
 
-        parser.parse(data).let {
-            Person.EntryBuilder()
-                .name(it.first)
-                .email(it.second)
-                .build()
-        }.also {
-            if(Command.contacts.isPersonExists(it)) Command.contacts.update(it) else Command.contacts.add(it)
-            Console().output(Command.contacts.findPersonByName(it.name).toString())
-        }
+//        parser.parse(data).let {
+//            Person.EntryBuilder()
+//                .name(it.first)
+//                .email(it.second)
+//                .build()
+//        }.also {
+//            if(Command.contacts.isPersonExists(it)) Command.contacts.update(it) else Command.contacts.add(it)
+//            Console().output(Command.contacts.findPersonByName(it.name).toString())
+//        }
     }
 
     override fun isValid(args: String?) = try {
