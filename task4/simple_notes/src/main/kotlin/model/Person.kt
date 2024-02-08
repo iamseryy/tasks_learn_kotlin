@@ -11,13 +11,13 @@ data class Person(val name: String, val phones: HashSet<String>, val emails: Has
             return this
         }
 
-        fun phoneNumber(phone: String): EntryBuilder {
-            if(!phone.isNullOrEmpty()) this.phones.add(phone)
+        fun phone(phone: String): EntryBuilder {
+            if(phone.isNotEmpty()) this.phones.add(phone)
             return this
         }
 
         fun email(email: String): EntryBuilder {
-            if(!email.isNullOrEmpty()) this.emails.add(email)
+            if(email.isNotEmpty()) this.emails.add(email)
             return this
         }
 

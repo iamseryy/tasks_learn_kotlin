@@ -1,5 +1,6 @@
 package org.example.command
 
+import org.example.repository.Contacts
 import org.example.view.Console
 
 class HelpCommand: Command {
@@ -11,16 +12,18 @@ class HelpCommand: Command {
         const val HELP_ADD_PHONE = "help content for 'AddPhone' command"
         const val HELP_ADD_EMAIL = "help content for 'AddEmail' command"
         const val HELP_SHOW = "help content for 'show' command"
+        const val HELP_EXPORT = "help content for 'export' command"
         const val HELP_EXIT = "help content for 'exit' command"
 
     }
-    override fun execute(data: String?) {
+    override fun execute(contacts: Contacts, data: String?) {
         Console().output(when (data) {
             "AddCommand" -> HELP_ADD
             "AddPhoneCommand" -> HELP_ADD_PHONE
             "AddEmailCommand" -> HELP_ADD_EMAIL
             "ShowCommand" -> HELP_SHOW
             "HelpCommand" -> HELP_ALL
+            "ExportCommand" -> HELP_EXPORT
             "ExitCommand" -> HELP_EXIT
             else -> HELP_ALL
         })

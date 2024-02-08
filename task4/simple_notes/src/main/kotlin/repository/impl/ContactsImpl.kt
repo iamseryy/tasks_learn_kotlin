@@ -9,28 +9,32 @@ class ContactsImpl: Contacts {
 
     override fun findPersonByName(name: String) = people[name]
 
-//    override fun add(person: Person) = people.add(person)
-//
-//    override fun update(person: Person) {
-//        findPersonByName(person.name)?.let{
-//            it.email.addAll(person.email)
-//            it.phoneNumber.addAll(person.phoneNumber)
-//        }
-//    }
-
     override fun addEmail(name: String, email: String) {
-        TODO("Not yet implemented")
+        if (people.containsKey(name)) {
+            people[name]?.emails?.add(email)
+        } else {
+            people[name] = Person.EntryBuilder()
+                .name(name)
+                .email(email)
+                .build()
+        }
+
     }
 
     override fun addPhone(name: String, phone: String) {
-        TODO("Not yet implemented")
+        if (people.containsKey(name)) {
+            people[name]?.phones?.add(phone)
+        } else {
+            people[name] = Person.EntryBuilder()
+                .name(name)
+                .phone(phone)
+                .build()
+        }
     }
 
-    override fun add(name: String, addContactAttr: (String) -> Person.EntryBuilder) {
-        addContactAttr(name).
+    override fun add(name: String, contactAttribute: String, addContact: (String, String) -> Unit) {
+        addContact(name, contactAttribute)
     }
-
-    override fun isPersonExists(name: String)= people.containsKey(name)
 
     override fun findPeopleByEmail(email: String) = people.filter { it.value.emails.contains(email) }.map { it.value }.toHashSet()
 

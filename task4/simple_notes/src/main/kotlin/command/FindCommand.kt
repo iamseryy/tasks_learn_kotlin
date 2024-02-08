@@ -2,6 +2,7 @@ package org.example.command
 
 import org.example.exception.ArgumentErrorException
 import org.example.model.Person
+import org.example.repository.Contacts
 import org.example.util.Validator
 import org.example.view.Console
 
@@ -10,16 +11,18 @@ class FindCommand: Command {
     private val parser = Parser()
     companion object {
         const val NOTHING_FOUND = "Nothing found"
-        val subCommands: List<(String) -> HashSet<Person>> = listOf(
-            { Command.contacts.findPeopleByPhone(it) },
-            { Command.contacts.findPeopleByEmail(it) })
     }
 
     override fun isValid(args: String?) = !args.isNullOrEmpty()
 
-    override fun execute(data: String?) {
+    override fun execute(contacts: Contacts, data: String?) {
         if(data.isNullOrEmpty() || data.trim().isEmpty()) throw ArgumentErrorException(Command.ARGUMENT_ERROR)
-        parser.getCommand(data).also {
+
+        val subCommands: List<(String) -> HashSet<Person>> = listOf(
+            { contacts.findPeopleByPhone(it) },
+            { contacts.findPeopleByEmail(it) })
+
+        parser.getCommand(subCommands, data).also {
             if (it == null) {
                Console().output(NOTHING_FOUND)
                return
@@ -32,7 +35,7 @@ class FindCommand: Command {
     }
 
     private inner class Parser {
-        fun getCommand(data: String) =  when {
+        fun getCommand(subCommands: List<(String) -> HashSet<Person>>, data: String) =  when {
                 Validator.isPhoneNumberValid(data) -> subCommands[0] to data
                 Validator.isEmailValid(data) -> subCommands[1] to data
                 else -> null

@@ -2,24 +2,15 @@ package org.example.command
 
 import org.example.exception.ArgumentErrorException
 import org.example.exception.EmailValidateErrorException
-import org.example.model.Person
+import org.example.repository.Contacts
 import org.example.util.Validator
-import org.example.view.Console
 
 class AddEmailCommand: Command {
     private val parser = Parser()
-    override fun execute(data: String?) {
-        if(data.isNullOrEmpty() || data.trim().isEmpty()) throw ArgumentErrorException(Command.ARGUMENT_ERROR)
 
-//        parser.parse(data).let {
-//            Person.EntryBuilder()
-//                .name(it.first)
-//                .email(it.second)
-//                .build()
-//        }.also {
-//            if(Command.contacts.isPersonExists(it)) Command.contacts.update(it) else Command.contacts.add(it)
-//            Console().output(Command.contacts.findPersonByName(it.name).toString())
-//        }
+    override fun execute(contacts: Contacts, data: String?) {
+        if(data.isNullOrEmpty() || data.trim().isEmpty()) throw ArgumentErrorException(Command.ARGUMENT_ERROR)
+        parser.parse(data).let { contacts.addEmail(it.first, it.second) }
     }
 
     override fun isValid(args: String?) = try {
