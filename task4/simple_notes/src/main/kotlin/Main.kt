@@ -10,32 +10,29 @@ import org.example.view.Console
 import org.example.view.UserInterface
 
 
-
-
 fun main() {
-
     val console: UserInterface = Console()
     val commandParser: CommandParser = CommandParserImpl()
     val contacts: Contacts = ContactsImpl()
     while (true) {
         try {
             commandParser.readCommand(console.input()).run {
-                if(!first().isValid(second)) HelpCommand().execute(contacts, first()::class.simpleName) else first().execute(contacts,second)
+                if(!first().isValid(second)) HelpCommand().execute(contacts, first()::class.simpleName) else first().execute(contacts, second)
             }
         } catch (e: ArgumentErrorException) {
-            println(e.message)
+            console.output(e.message)
             continue
         } catch (e: CommandErrorException) {
-            println(e.message)
+            console.output(e.message)
             continue
         } catch (e: FieldValidateErrorException) {
-            println(e.message)
+            console.output(e.message)
             continue
         } catch (e: NoPersonException) {
-            println(e.message)
+            console.output(e.message)
             continue
         } catch (e: ExitException) {
-            println(e.message)
+            console.output(e.message)
             break
         }
     }

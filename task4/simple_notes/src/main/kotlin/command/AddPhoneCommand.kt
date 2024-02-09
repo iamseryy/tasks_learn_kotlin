@@ -2,10 +2,8 @@ package org.example.command
 
 import org.example.exception.ArgumentErrorException
 import org.example.exception.PhoneNumberValidateErrorException
-import org.example.model.Person
 import org.example.repository.Contacts
 import org.example.util.Validator
-import org.example.view.Console
 
 class AddPhoneCommand: Command {
     private val parser = Parser()

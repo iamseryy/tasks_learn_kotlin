@@ -1,7 +1,6 @@
 package org.example.command
 
 import org.example.repository.Contacts
-import org.example.repository.impl.ContactsImpl
 
 sealed interface Command {
     companion object {

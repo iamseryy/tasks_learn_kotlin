@@ -39,4 +39,8 @@ class ContactsImpl: Contacts {
     override fun findPeopleByEmail(email: String) = people.filter { it.value.emails.contains(email) }.map { it.value }.toHashSet()
 
     override fun findPeopleByPhone(phone: String) = people.filter { it.value.phones.contains(phone) }.map { it.value }.toHashSet()
+
+    override fun findAll() = people.map { it.value }.toHashSet()
+
+    override fun isEmpty() = people.isEmpty()
 }

@@ -3,6 +3,7 @@ package org.example.util
 object Validator {
     const val PHONE_NUMBER_ERROR = "Phone number error"
     const val EMAIL_ERROR = "Email error"
+
     @JvmStatic
     fun isPhoneNumberValid(phoneNumber: String) = phoneNumber.matches(Regex("""^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}${'$'}"""))
 
