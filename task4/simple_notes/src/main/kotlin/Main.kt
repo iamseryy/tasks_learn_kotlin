@@ -9,7 +9,11 @@ import org.example.repository.impl.ContactsImpl
 import org.example.view.Console
 import org.example.view.UserInterface
 
+
+
+
 fun main() {
+
     val console: UserInterface = Console()
     val commandParser: CommandParser = CommandParserImpl()
     val contacts: Contacts = ContactsImpl()
